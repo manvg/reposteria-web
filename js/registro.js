@@ -1,59 +1,94 @@
-// Validación y almacenamiento en localStorage
+document.addEventListener('DOMContentLoaded', function() {
+    // Manejar el formulario de registro
+    const formRegister = document.querySelector('.needs-validation');
+    formRegister.addEventListener('submit', function(event) {
+      event.preventDefault();
+      event.stopPropagation();
+  
+      const nombre = document.querySelector('#txtNombre').value;
+      const apellido = document.querySelector('#txtApellidoPaterno').value;
+      const direccion = document.querySelector('#txtDireccion').value;
+      const telefono = document.querySelector('#txtTelefono').value;
+      const email = document.querySelector('#txtEmail').value;
+      const contrasena = document.querySelector('#txtContrasena').value;
+      const repetirContrasena = document.querySelector('#txtRepetirContrasena').value;
+      const perfil = 'Cliente';
+  
+      console.log('Formulario de registro enviado:', { nombre, apellido, direccion, telefono, email, contrasena, repetirContrasena});
+  
+      const isValid = formRegister.checkValidity();
+      formRegister.classList.add('was-validated');
+  
+      if (!isValid) {
+        return;
+      }
+  
+      if (contrasena !== repetirContrasena) {
+        alert('Las contraseñas no coinciden.');
+        console.log('Las contraseñas no coinciden.');
+        return;
+      }
+  
+      const registroExitoso = window.registrarUsuario(nombre, apellido, direccion, telefono, email, contrasena, perfil);
+      if (registroExitoso) {
+        console.log('Registro exitoso:', { nombre, apellido, direccion, telefono, email, contrasena });
+        formRegister.reset();
+        formRegister.classList.remove('was-validated');
+        //Redireccionar al login
+          setTimeout(() => {
+            window.location.href = 'login.html';
+        }, 2000); // Redireccionar después de 2 segundos
+        return true;
+      } else {
+        console.log('El usuario ya existe.');
+      }
+    }, false);
+  });
+  
+// Validaciones contraseña
+document.getElementById('txtContrasena').addEventListener('change', validarContrasena);
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Validación de contraseña
-    document.getElementById('txtContrasena').addEventListener('change', validarContrasena);
-    document.getElementById('txtRepetirContrasena').addEventListener('change', validarRepetirContrasena);
+document.getElementById('txtRepetirContrasena').addEventListener('change', function() {
+    let contrasena = document.getElementById('txtContrasena').value;
+    let repetirContrasena = document.getElementById('txtRepetirContrasena').value;
 
-    // Validación de fecha de nacimiento
-    // document.getElementById('dtFechaNacimiento').addEventListener('change', function () {
-    //     if (this.value) {
-    //         validarEdad(this.value);
-    //     } else {
-    //         document.getElementById('dtFechaNacimiento').classList.add('is-invalid');
-    //         document.querySelector('.invalid-feedback.fecha-nacimiento').textContent = "Este campo es obligatorio.";
-    //         document.querySelector('.invalid-feedback.fecha-nacimiento').style.display = 'block';
-    //     }
-    // });
-
-    // Manejar el envío del formulario
-    document.getElementById('registroForm').addEventListener('submit', function (event) {
-        if (!this.checkValidity()) {
-            event.preventDefault();
-            event.stopPropagation();
-        } else {
-            event.preventDefault();
-            guardarDatosEnLocalStorage();
+    if (contrasena !== null && contrasena !== '' && repetirContrasena !== null && repetirContrasena !== '') {
+        // Validar igualdad de contraseñas
+        if (contrasena !== repetirContrasena) {
+            document.querySelector('.invalid-feedback.repetir-contrasena').textContent = "Las contraseñas no son iguales.";
+            document.getElementById('txtRepetirContrasena').classList.add('is-invalid');
+            document.querySelector('.invalid-feedback.repetir-contrasena').style.display = 'block';
+            return false;
         }
-        this.classList.add('was-validated');
-    });
+    }
 
-    // Limpiar formulario
-    document.getElementById('btnLimpiarFormulario').addEventListener('click', function () {
-        const form = document.getElementById('registroForm');
-        form.reset();
-        form.classList.remove('was-validated');
-    });
+    // Repetir contraseña
+    document.getElementById('txtRepetirContrasena').classList.remove('is-invalid');
+    document.querySelector('.invalid-feedback.repetir-contrasena').textContent = "Este campo es obligatorio.";
+    document.querySelector('.invalid-feedback.repetir-contrasena').style.display = 'none';
 });
 
 function validarContrasena() {
     let contrasena = document.getElementById('txtContrasena').value;
 
-    if (contrasena) {
+    if (contrasena !== null && contrasena !== '') {
+        // Validar existencia de letra mayuscula, digitos, y largo de 6 a 18 caracteres
         if (contrasena.length < 6 || contrasena.length > 18) {
-            mostrarMensajeContrasena("La contraseña debe tener entre 6 y 18 caracteres.");
+            mostrarMensajeContrasena("Largo entre 6 y 18 caracteres.");
             return false;
         }
         if (!/[A-Z]/.test(contrasena)) {
-            mostrarMensajeContrasena("La contraseña debe contener al menos una letra mayúscula.");
+            mostrarMensajeContrasena("Debe contener al menos una letra mayúscula.");
             return false;
         }
         if (!/\d/.test(contrasena)) {
-            mostrarMensajeContrasena("La contraseña debe contener al menos un número.");
+            mostrarMensajeContrasena("Debe contener al menos un número.");
             return false;
         }
     }
 
+    // Inicializa campos con valores por defecto
+    // Contraseña
     document.getElementById('txtContrasena').classList.remove('is-invalid');
     document.querySelector('.invalid-feedback.contrasena').textContent = "Este campo es obligatorio.";
     document.querySelector('.invalid-feedback.contrasena').style.display = 'none';
@@ -63,71 +98,4 @@ function mostrarMensajeContrasena(mensaje) {
     document.getElementById('txtContrasena').classList.add('is-invalid');
     document.querySelector('.invalid-feedback.contrasena').textContent = mensaje;
     document.querySelector('.invalid-feedback.contrasena').style.display = 'block';
-}
-
-function validarRepetirContrasena() {
-    let contrasena = document.getElementById('txtContrasena').value;
-    let repetirContrasena = document.getElementById('txtRepetirContrasena').value;
-
-    if (contrasena && repetirContrasena) {
-        if (contrasena !== repetirContrasena) {
-            document.querySelector('.invalid-feedback.repetir-contrasena').textContent = "Las contraseñas no son iguales.";
-            document.getElementById('txtRepetirContrasena').classList.add('is-invalid');
-            document.querySelector('.invalid-feedback.repetir-contrasena').style.display = 'block';
-            return false;
-        }
-    }
-
-    document.getElementById('txtRepetirContrasena').classList.remove('is-invalid');
-    document.querySelector('.invalid-feedback.repetir-contrasena').textContent = "Este campo es obligatorio.";
-    document.querySelector('.invalid-feedback.repetir-contrasena').style.display = 'none';
-}
-
-// function validarEdad(fechaNacimiento) {
-//     const edadMinima = 13;
-//     const fechaActual = new Date().toISOString().slice(0, 10);
-
-//     let anioNacimiento = parseInt(fechaNacimiento.substring(0, 4));
-//     let mesNacimiento = parseInt(fechaNacimiento.substring(5, 7)) - 1; 
-//     let diaNacimiento = parseInt(fechaNacimiento.substring(8, 10));
-//     let fechaNac = new Date(anioNacimiento, mesNacimiento, diaNacimiento);
-//     let fechaHoy = new Date(fechaActual);
-//     let edad = fechaHoy.getFullYear() - fechaNac.getFullYear();
-
-//     if (fechaNac.getMonth() > fechaHoy.getMonth() || (fechaNac.getMonth() === fechaHoy.getMonth() && fechaNac.getDate() > fechaHoy.getDate())) {
-//         edad--;
-//     }
-
-//     if (edad < edadMinima) {
-//         document.getElementById('dtFechaNacimiento').classList.add('is-invalid');
-//         document.querySelector('.invalid-feedback.fecha-nacimiento').textContent = "Debes ser mayor de 13 años para registrarte.";
-//         document.querySelector('.invalid-feedback.fecha-nacimiento').style.display = 'block';
-//         document.getElementById('btnRegistrarse').disabled = true;
-//         return false;
-//     } else {
-//         document.getElementById('dtFechaNacimiento').classList.remove('is-invalid');
-//         document.querySelector('.invalid-feedback.fecha-nacimiento').textContent = "Este campo es obligatorio.";
-//         document.querySelector('.invalid-feedback.fecha-nacimiento').style.display = 'none';
-//         document.getElementById('btnRegistrarse').disabled = false;
-//     }
-// }
-
-function guardarDatosEnLocalStorage() {
-    const nombres = document.getElementById('txtNombres').value;
-    const apellido = document.getElementById('txtApellidos').value;
-    const direccion = document.getElementById('txtdireccionl').value;
-    const email = document.getElementById('txtEmail').value;
-    const contrasena = document.getElementById('txtContrasena').value;
-    const fechaNacimiento = document.getElementById('dtFechaNacimiento').value;
-
-    const usuario = {
-        nombres,
-        apellido,
-        direccion,
-        email,
-        contrasena
-    };
-
-    localStorage.setItem('usuario', JSON.stringify(usuario));
-    alert('Datos guardados en localStorage.');
 }
