@@ -13,6 +13,7 @@
 </head>
 
 <body>
+  <!-- Menú -->
   <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
@@ -30,9 +31,9 @@
           <li class="nav-item">
             <a class="nav-link" href="tortas.html">Tortas</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="cheesecakes.html">Cheescakes</a>
-          </li>
+            <li class="nav-item">
+                <a class="nav-link" href="cheesecakes.html">Cheescakes</a>
+            </li>
           <li class="nav-item">
             <a class="nav-link" href="kuchens.html">Kuchens</a>
           </li>
@@ -49,66 +50,91 @@
             </ul>
           </li>
           <li class="nav-item" style=" cursor: pointer;">
-            <a class="nav-link" id="cart-icon"><span style="padding-right: 10px;">Carrito</span><i
-                class="bi bi-cart" style="padding-right: 6px;"></i><span class="contador-carrito">0</span></a>
+            <a class="nav-link" id="cart-icon"><span style="padding-right: 10px;">Carrito</span><i class="bi bi-cart"
+                style="padding-right: 6px;"></i><span class="contador-carrito">0</span></a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-
-<div class="container">
-    <div class="row mt-4">
-      <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 mt-2">
-        <div class="card bg-transparent">
-          <img src="img/tortas/torta_amor.PNG" class="card-img-top" alt="Torta 1">
-          <div class="card-body">
-            <h5 class="card-title">Torta amor</h5>
-            <p class="card-text">$15.000</p>
-            <a href="#" class="btn btn-primary btn-add-cart" data-id="1">Añadir al carrito</a>
-          </div>
+  <!-- Carrito de compras -->
+  <div class="cart-products" id="products-id">
+    <p class="close-btn">X</p>
+    <h3>Mi carrito</h3>
+    <div class="card-items">
+      <!-- Productos añadidos al carrito -->
+    </div>
+    <h2>Total: $<strong class="price-total">0</strong></h2>
+  </div>
+  <br>
+  <!-- Contenedor de productos -->
+  <div class="container">
+    <div class="card form-card shadow p-4">
+      <h4 class="text-center">Productos</h4>
+      <!-- Breadcrumb -->
+      <div class="row mt-4">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2">
+          <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Tortas</li>
+            </ol>
+          </nav>
         </div>
-      </div>
-      <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 mt-2">
-        <div class="card bg-transparent">
-          <img src="img/tortas/torta_bizcocho_rellena_manja _trozos_durazno_cubierta_ganache_chocolate.PNG"
-            class="card-img-top" alt="Torta 1">
-          <div class="card-body">
-            <h5 class="card-title">Torta chocolate</h5>
-            <p class="card-text">$20.000</p>
-            <a href="#" class="btn btn-primary btn-add-cart" data-id="2">Añadir al carrito</a>
+        <!-- Productos -->
+        <div class="row mt-4">
+          <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 mt-2">
+            <div class="card bg-transparent">
+              <img src="img/tortas/torta_amor.PNG" class="card-img-top" alt="Torta 1">
+              <div class="card-body">
+                <h6 class="card-title">Bizcocho amor</h6>
+                <p class="card-text">$25.000</p>
+                <a href="#" class="btn btn-primary btn-add-cart" data-id="1">Añadir al carrito</a>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 mt-2">
-        <div class="card bg-transparent">
-          <img src="img/tortas/torta_hojrasca_manjar_nuez.PNG" class="card-img-top" alt="Torta 1">
-          <div class="card-body">
-            <h5 class="card-title">Hojarasca manjar nuez</h5>
-            <p class="card-text">$25.000</p>
-            <a href="#" class="btn btn-primary btn-add-cart" data-id="3">Añadir al carrito</a>
+          <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 mt-2">
+            <div class="card bg-transparent">
+              <img src="img/tortas/torta_bizcocho_rellena_manja _trozos_durazno_cubierta_ganache_chocolate.PNG"
+                class="card-img-top" alt="Torta 2">
+              <div class="card-body">
+                <h6 class="card-title">Bizcocho manjar cubiera chocolate</h6>
+                <p class="card-text">$29.000</p>
+                <a href="#" class="btn btn-primary btn-add-cart" data-id="2">Añadir al carrito</a>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 mt-2">
-        <div class="card bg-transparent">
-          <img src="img/tortas/torta_manjar_durazno_dragon_ball_z.PNG" class="card-img-top" alt="Torta 1">
-          <div class="card-body">
-            <h5 class="card-title">Tematica Dragon Ball Z</h5>
-            <p class="card-text">$28.000</p>
-            <a href="#" class="btn btn-primary btn-add-cart" data-id="">Añadir al carrito</a>
+          <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 mt-2">
+            <div class="card bg-transparent">
+              <img src="img/tortas/torta_hojrasca_manjar_nuez.PNG" class="card-img-top" alt="Torta 3">
+              <div class="card-body">
+                <h6 class="card-title">Hojarasca manjar nuez</h6>
+                <p class="card-text">$25.000</p>
+                <a href="#" class="btn btn-primary btn-add-cart" data-id="3">Añadir al carrito</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 mt-2">
+            <div class="card bg-transparent">
+              <img src="img/tortas/torta_manjar_durazno_dragon_ball_z.PNG" class="card-img-top" alt="Torta 4">
+              <div class="card-body">
+                <h6 class="card-title">Manjar durazno - temática</h6>
+                <p class="card-text">$30.000</p>
+                <a href="#" class="btn btn-primary btn-add-cart" data-id="4">Añadir al carrito</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <br>
-  <footer class="text-center bg-dark" style="color: white;">
-    <strong>© 2024 - Repostería Mis Dulces Delicias.</strong>Todos los derechos reservados.
-  </footer>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+
+    <footer class="text-center bg-dark" style="color: white;">
+      <strong>© 2024 - Repostería Mis Dulces Delicias.</strong>Todos los derechos reservados.
+    </footer>
+    <script src="js/carrito.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"></script>
 </body>
 
 </html>

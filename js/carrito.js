@@ -1,12 +1,12 @@
 // Variables
-let allContainerCart = document.querySelector('.container .row');
+let contenidoCarrito = document.querySelector('.container .row');
 let itemsCarrito = document.querySelector('.card-items');
-let precioTotal = document.querySelector('.price-total');
-let amountProduct = document.querySelector('.contador-carrito');
+let precioTotalCarrito = document.querySelector('.price-total');
+let contadorCarrito = document.querySelector('.contador-carrito');
 
 let arrayCompras = [];
-let totalCard = 0;
-let countProduct = 0;
+let precioTotalProductos = 0;
+let contadorProductos = 0;
 
 // Event Listeners
 document.getElementById('cart-icon').addEventListener('click', function() {
@@ -20,91 +20,91 @@ document.querySelector('.close-btn').addEventListener('click', function() {
 loadEventListeners();
 
 function loadEventListeners() {
-    allContainerCart.addEventListener('click', addProduct);
-    itemsCarrito.addEventListener('click', deleteProduct);
+    contenidoCarrito.addEventListener('click', agregarProducto);
+    itemsCarrito.addEventListener('click', eliminarProducto);
 }
 
 // Functions
-function addProduct(e) {
+function agregarProducto(e) {
     e.preventDefault();
     if (e.target.classList.contains('btn-add-cart')) {
-        const selectProduct = e.target.parentElement.parentElement; 
-        readTheContent(selectProduct);
+        const productoSeleccionado = e.target.parentElement.parentElement; 
+        obtenerContenidoSeleccion(productoSeleccionado);
     }
 }
 
-function deleteProduct(e) {
+function eliminarProducto(e) {
     if (e.target.classList.contains('delete-product')) {
-        const deleteId = e.target.getAttribute('data-id');
+        const idProducto = e.target.getAttribute('data-id');
         arrayCompras.forEach(value => {
-            if (value.id == deleteId) {
-                let priceReduce = parseFloat(value.price) * parseFloat(value.amount);
-                totalCard = totalCard - priceReduce;
-                totalCard = totalCard;
+            if (value.id == idProducto) {
+                let priceReduce = parseFloat(value.precio) * parseFloat(value.cantidad);
+                precioTotalProductos = precioTotalProductos - priceReduce;
+                precioTotalProductos = precioTotalProductos;
             }
         });
-        arrayCompras = arrayCompras.filter(product => product.id !== deleteId);
-        countProduct--;
+        arrayCompras = arrayCompras.filter(producto => producto.id !== idProducto);
+        contadorProductos--;
     }
     if (arrayCompras.length === 0) {
-        precioTotal.innerHTML = 0;
-        amountProduct.innerHTML = 0;
+        precioTotalCarrito.innerHTML = 0;
+        contadorCarrito.innerHTML = 0;
     }
-    loadHtml();
+    cargarHtml();
 }
 
-function readTheContent(product) {
-    const infoProduct = {
-        image: product.querySelector('.card-img-top').src,
-        title: product.querySelector('.card-title').textContent,
-        price: product.querySelector('.card-text').textContent.replace('$', '').replace(/\./g,''),
-        id: product.querySelector('a').getAttribute('data-id'),
-        amount: 1
+function obtenerContenidoSeleccion(producto) {
+    const infoProducto = {
+        imagen: producto.querySelector('.card-img-top').src,
+        titulo: producto.querySelector('.card-title').textContent,
+        precio: producto.querySelector('.card-text').textContent.replace('$', '').replace(/\./g,''),
+        id: producto.querySelector('a').getAttribute('data-id'),
+        cantidad: 1
     };
 
-    totalCard = parseFloat(totalCard) + parseFloat(infoProduct.price);
-    totalCard = totalCard;
+    precioTotalProductos = parseFloat(precioTotalProductos) + parseFloat(infoProducto.precio);
+    precioTotalProductos = precioTotalProductos;
 
-    const exist = arrayCompras.some(product => product.id === infoProduct.id);
-    if (exist) {
-        const pro = arrayCompras.map(product => {
-            if (product.id === infoProduct.id) {
-                product.amount++;
-                return product;
+    const existe = arrayCompras.some(producto => producto.id === infoProducto.id);
+    if (existe) {
+        const pro = arrayCompras.map(producto => {
+            if (producto.id === infoProducto.id) {
+                producto.cantidad++;
+                return producto;
             } else {
-                return product;
+                return producto;
             }
         });
         arrayCompras = [...pro];
     } else {
-        arrayCompras = [...arrayCompras, infoProduct];
-        countProduct++;
+        arrayCompras = [...arrayCompras, infoProducto];
+        contadorProductos++;
     }
-    loadHtml();
+    cargarHtml();
 }
 
-function loadHtml() {
-    clearHtml();
-    arrayCompras.forEach(product => {
-        const { image, title, price, amount, id } = product;
+function cargarHtml() {
+    limpiarHtml();
+    arrayCompras.forEach(producto => {
+        const { imagen, titulo, precio, cantidad, id } = producto;
         const row = document.createElement('div');
         row.classList.add('item');
         row.innerHTML = `
-            <img src="${image}" alt="">
+            <img src="${imagen}" alt="">
             <div class="item-content">
-                <h5>${title}</h5>
-                <h5 class="cart-price">$${formatearNumero(price)}</h5>
-                <h6>Cantidad: ${amount}</h6>
+                <h5>${titulo}</h5>
+                <h5 class="cart-price">$${formatearNumero(precio)}</h5>
+                <h6>Cantidad: ${cantidad}</h6>
             </div>
             <span class="delete-product" data-id="${id}">X</span>
         `;
         itemsCarrito.appendChild(row);
-        precioTotal.innerHTML = formatearNumero(totalCard);
-        amountProduct.innerHTML = countProduct;
+        precioTotalCarrito.innerHTML = formatearNumero(precioTotalProductos);
+        contadorCarrito.innerHTML = contadorProductos;
     });
 }
 
-function clearHtml() {
+function limpiarHtml() {
     itemsCarrito.innerHTML = '';
 }
 
