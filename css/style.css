@@ -11,12 +11,10 @@ body {
     min-height: 50vh;
 }
 .navbar{
-    /*background-color: #d388a9;#cf9dc0; #8f5774*/
     background-color: rgba(212, 130, 166, 0.8); /* Utiliza RGBA para añadir transparencia */
 }
 .custom-nav-text .nav-link {
     color: #ffffff; /* Color de la letra */
-    /* font-family: 'Roboto', sans-serif; */
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 18px; /* Tamaño de la letra */
     font-weight: 400; /* Peso de la letra */
@@ -51,17 +49,6 @@ body {
 .bi .bi-cart{
     height: 20px;
 }
-.contador-carrito {
-    position: absolute;
-    background-color: #ff0000;
-    color: #ffffff;
-    padding: .15rem .25rem;
-    border-radius: .25rem;
-    /* border-radius: 50%;
-    padding: 5px 12px; */
-    font-size: 12px;
-    font-weight: bold;
-}
 .card {
     background-color: transparent; /* Fondo transparente para la tarjeta */
 }
@@ -72,16 +59,12 @@ body {
     opacity: 1; /* Restablece la opacidad a 1 para el cuerpo de la tarjeta */
     text-align: center;
 }
-
 .card-body h5,
 .card-body .btn {
     opacity: 1; /* Restablece la opacidad a 1 para el título y el botón dentro del cuerpo de la tarjeta */
 }
 
-.footer {
-    color: rgba(212, 130, 166, 0.8);;
-}
-
+/* Formulario login */
 .login-wrapper {
     display: flex;
     justify-content: center;
@@ -97,7 +80,7 @@ body {
 .login-container h2 {
     margin-bottom: 20px;
 }
-
+/* Formulario de registro */
 .registro-wrapper {
     display: flex;
     justify-content: center;
@@ -113,12 +96,7 @@ body {
 .registro-container h2 {
     margin-bottom: 20px;
 }
-/* @media (max-width: 768px) {
-    .custom-nav-text .nav-link {
-        padding: 10px; 
-    }
-} */
-
+/* Estilos para el carrito de compras */
 .cart-products {
     display: none;
     position: fixed;
@@ -131,18 +109,83 @@ body {
     z-index: 1000;
     padding: 20px;
     overflow-y: auto;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
 .cart-products .close-btn {
     cursor: pointer;
     text-align: right;
+    font-size: 1.2em;
+    margin-bottom: 10px;
 }
+
+.cart-products h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
 .cart-products .item {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
 }
+
 .cart-products .item img {
     width: 50px;
     height: 50px;
+    object-fit: cover;
+}
+
+.cart-products .item-content {
+    flex: 1;
+    margin-left: 10px;
+    font-size: 0.9em;
+}
+
+.cart-products .item-content h5 {
+    margin: 0;
+    font-size: 1em;
+}
+
+.cart-products .item-content h6 {
+    margin: 0;
+    font-size: 0.8em;
+}
+
+.cart-products .delete-product {
+    cursor: pointer;
+    color: red;
+}
+
+.cart-products h2 {
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+.cart-products .btn {
+    font-size: 1em;
+}
+
+.contador-carrito {
+    position: absolute;
+    background-color: #ff0000;
+    color: #ffffff;
+    padding: .15rem .25rem;
+    border-radius: .25rem;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Estilos para el footer */
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #343a40; /* Cambia el color de fondo según tu diseño */
+    color: white;
+    text-align: center;
 }
