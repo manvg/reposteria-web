@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.querySelector('.login-container form');
     const loginResultado = document.getElementById('loginResultado');
-
+    const containerLogin = document.getElementById('iniciarSesion');
     loginForm.addEventListener('submit', function(event) {
         event.preventDefault();
         loginResultado.innerHTML = ''; // Limpiar mensaje previo
@@ -34,4 +34,40 @@ document.addEventListener('DOMContentLoaded', function() {
             loginResultado.innerHTML = '<p class="text-danger">Correo electrónico o contraseña incorrectos.</p>';
         }
     });
+
+    //Recuperar contraseña
+    const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+    const forgotPasswordContainer = document.getElementById('forgotPasswordContainer');
+    const forgotPasswordForm = document.getElementById('forgotPasswordForm');
+    forgotPasswordContainer.style.display = 'none';//Por defecto
+
+    forgotPasswordLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        containerLogin.style.display = 'none';
+        forgotPasswordContainer.style.display = '';
+    });
+
+    forgotPasswordForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const email = document.getElementById('forgotEmail').value;
+        mostrarAlerta('Se ha enviado un enlace de recuperación a ' + email, 'success');
+        containerLogin.style.display = '';
+        forgotPasswordContainer.style.display = 'none';
+        
+    });
+
+    function mostrarAlerta(mensaje, tipo) {
+        const alertaDiv = document.createElement('div');
+        alertaDiv.className = `alert alert-${tipo}`;
+        alertaDiv.appendChild(document.createTextNode(mensaje));
+        loginResultado.appendChild(alertaDiv); // Agregar la alerta al div loginResultado
+    
+        // Desaparecer alerta después de 3 segundos
+        setTimeout(() => {
+            const alerta = document.querySelector('.alert');
+            if (alerta) {
+                alerta.remove();
+            }
+        }, 3000);
+    }
 });

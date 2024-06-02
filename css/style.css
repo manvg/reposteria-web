@@ -4,12 +4,12 @@ body {
     background: url('../img/background-1.png') no-repeat center center fixed; /* Asegura que la ruta sea correcta */
     background-size: cover; /* Para que la imagen cubra toda la pantalla */
 }
-.container{
+/* .container{
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 50vh;
-}
+} */
 .navbar{
     background-color: rgba(212, 130, 166, 0.8); /* Utiliza RGBA para añadir transparencia */
 }
@@ -177,6 +177,19 @@ body {
     border-radius: .25rem;
     font-size: 12px;
     font-weight: bold;
+}
+
+.recuperar-cuenta-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.recuperar-cuenta-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Estilos para el footer */
