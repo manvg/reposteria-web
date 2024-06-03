@@ -10,6 +10,11 @@ body {
     align-items: center;
     min-height: 50vh;
 } */
+
+.breadcrumb-item, .breadcrumb-item a {
+    font-size: 25px;
+}
+
 .navbar{
     background-color: rgba(212, 130, 166, 0.8); /* Utiliza RGBA para añadir transparencia */
 }
@@ -25,12 +30,12 @@ body {
 
 .custom-nav-text .nav-link:hover {
     color: black; /* Color al pasar el mouse por encima */
-    font-weight: 700; /* Peso de la letra al pasar el mouse */
+    font-weight: 100; /* Peso de la letra al pasar el mouse */
 }
 
 .custom-nav-text .nav-link.active {
     color: black; /* Color de la letra activa */
-    font-weight: 700; /* Peso de la letra activa */
+    font-weight: 100; /* Peso de la letra activa */
     text-decoration: underline; /* Subraya el texto activo */
 }
 
@@ -43,6 +48,7 @@ body {
 .navbar-nav .nav-item {
     margin: 0 15px; /* Ajusta el valor para más o menos espacio */
 }
+
 .boton-carrito{
     height: 50px;
 }
@@ -179,6 +185,11 @@ body {
     font-weight: bold;
 }
 
+.contenedor-productos{
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Recuperacion contraseña */
 .recuperar-cuenta-wrapper {
     display: flex;
     justify-content: center;

@@ -47,5 +47,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     listarUsuarios();
 
+    const btnLimpiarStorage = document.getElementById('btnLimpiarStorage');
+
+    btnLimpiarStorage.addEventListener('click', function() {
+      localStorage.removeItem('usuarios');
+      localStorage.removeItem('datosSesion');
+      alert('localStorage limpiado.');
+    });
     
 });

@@ -12,76 +12,61 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Función para registrar usuarios
     function registrarUsuario(nombre, apellido, direccion, telefono, email, contrasena) {
-      console.log('Intentando registrar usuario:', { nombre, apellido, direccion, telefono, email, contrasena });
       const usuarioExistente = usuarios.find(user => user.email === email);
       
       if (usuarioExistente) {
-        mostrarAlerta('El usuario ya existe.', 'danger');
-        console.log('El usuario ya existe.');
+        mostrarMensajeAlerta('Error','El usuario ya existe.');
         return false;
       }
       
       const perfil = 'Cliente';
       const nuevoUsuario = { nombre, apellido, direccion, telefono, email, contrasena, perfil };
+
       usuarios.push(nuevoUsuario);
+
       localStorage.setItem('usuarios', JSON.stringify(usuarios));
-      mostrarAlerta('Usuario registrado exitosamente.', 'success');
-      console.log('Usuario registrado exitosamente:', nuevoUsuario);
+
+      mostrarMensajeAlerta('Éxito','Usuario registrado exitosamente.');
+      
       return true;
     }
 
-    // Función para mostrar alertas
-    function mostrarAlerta(mensaje, tipo) {
-      const alertaDiv = document.createElement('div');
-      alertaDiv.className = `alert alert-${tipo}`;
-      alertaDiv.appendChild(document.createTextNode(mensaje));
-      const container = document.querySelector('.container');
-      const firstChild = container.firstChild;
-      
-      // Insertar la alerta al principio del contenedor
-      if (firstChild) {
-        container.insertBefore(alertaDiv, firstChild);
-      } else {
-        container.appendChild(alertaDiv);
-      }
-  
-      // Desaparecer alerta después de 3 segundos
-      setTimeout(() => {
-        const alerta = document.querySelector('.alert');
-        if (alerta) {
-          alerta.remove();
+    //#region Mensaje alerta
+    const toastLiveExample = document.getElementById('liveToast');
+    const tituloAlerta = document.getElementById('txtTituloAlerta');
+    const mensajeAlerta = document.getElementById('txtAlertaMensaje');
+
+    function mostrarMensajeAlerta(titulo,mensaje){
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+        if(titulo === 'Error'){
+            tituloAlerta.style.backgroundColor = 'red';
         }
-      }, 6000);
+        if(titulo === 'Ok'){
+            tituloAlerta.style.backgroundColor = 'green';
+        }
+        tituloAlerta.textContent = titulo;
+        mensajeAlerta.textContent = mensaje;
+        toastBootstrap.show()
     }
+    //#endregion
   
-    // Exportar funciones
+    //Exportar funciones
     window.registrarUsuario = registrarUsuario;
-    //window.iniciarSesion = iniciarSesion;
-
-    function crearUsuarioAdmin() {
-      const nombre = 'Admin';
-      const apellido = 'Admin';
-      const direccion = 'Direccion admin';
-      const telefono = '0000000000';
-      const email = 'admin@reposteria.cl';
-      const contrasena = 'Admin123';
-      const perfil = 'admin';
-
-      const nuevoUsuario = { nombre, apellido, direccion, telefono, email, contrasena, perfil };
-      usuarios.push(nuevoUsuario);
-      localStorage.setItem('usuarios', JSON.stringify(usuarios));
-      console.log('Usuario administrador creado:', nuevoUsuario);
-  }
-
-  const btnLimpiarStorage = document.getElementById('btnLimpiarStorage');
-
-  btnLimpiarStorage.addEventListener('click', function() {
-    localStorage.removeItem('usuarios');
-    localStorage.removeItem('datosSesion');
-    alert('localStorage limpiado.');
-  });
-
    //#endregion
 
+   function crearUsuarioAdmin() {
+    const nombre = 'Admin';
+    const apellido = 'Admin';
+    const direccion = 'Direccion admin';
+    const telefono = '0000000000';
+    const email = 'admin@reposteria.cl';
+    const contrasena = '1234';
+    const perfil = 'admin';
+
+    const nuevoUsuario = { nombre, apellido, direccion, telefono, email, contrasena, perfil };
+    usuarios.push(nuevoUsuario);
+    localStorage.setItem('usuarios', JSON.stringify(usuarios));
+    console.log('Usuario administrador creado:', nuevoUsuario);
+  }
   });
   

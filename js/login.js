@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginResultado = document.getElementById('loginResultado');
     const containerLogin = document.getElementById('iniciarSesion');
 
-    //Iniciar sesión
+    //#region Iniciar sesión
     loginForm.addEventListener('submit', function(event) {
         event.preventDefault();
         loginResultado.innerHTML = ''; //Limpiar mensaje previo
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const usuarioLogin = usuarios.find(user => user.email === email && user.contrasena === password);
 
         if(usuarioLogin && usuarioLogin.email === email && usuarioLogin.contrasena === password){
-            guardarDatosSesion(usuarioLogin.email, usuarioLogin.nombre, usuarioLogin.perfil);
+            guardarDatosSesion(usuarioLogin);
 
             loginResultado.innerHTML = '<p class="text-success">Inicio de sesión exitoso.</p>';
 
@@ -33,16 +33,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.location.href = 'mi-cuenta.html';
             }
         } else {
-            loginResultado.innerHTML = '<p class="text-danger">Correo electrónico o contraseña incorrectos.</p>';
+            mostrarMensajeAlerta('Error','Correo electrónico o contraseña incorrectos.')
         }
     });
-
+    //#endregion
+    
     //#region Datos sesión
-    function guardarDatosSesion(email,nombreUsuario, perfil) {
+    function guardarDatosSesion(usuarioLogin) {
         let datosSesion = {
-            emailUsuario: email,
-            nombreUsuario: nombreUsuario,
-            perfilUsuario: perfil
+            emailUsuario: usuarioLogin.email,
+            nombreUsuario: usuarioLogin.nombre,
+            perfilUsuario: usuarioLogin.perfil,
+            contrasenaUsuario: usuarioLogin.contrasena
         }
         const datosSesionJSON = JSON.stringify(datosSesion);
         localStorage.setItem('datosSesion', datosSesionJSON);
@@ -72,25 +74,23 @@ document.addEventListener('DOMContentLoaded', function() {
     forgotPasswordForm.addEventListener('submit', function(event) {
         event.preventDefault();
         const email = document.getElementById('forgotEmail').value;
-        mostrarAlerta('Se ha enviado un enlace de recuperación a ' + email, 'success');
+        mostrarMensajeAlerta('Éxito','Se ha enviado un enlace de recuperación a ' + email);
         containerLogin.style.display = '';
         forgotPasswordContainer.style.display = 'none';
         
     });
+    //#endregion
 
-    function mostrarAlerta(mensaje, tipo) {
-        const alertaDiv = document.createElement('div');
-        alertaDiv.className = `alert alert-${tipo}`;
-        alertaDiv.appendChild(document.createTextNode(mensaje));
-        loginResultado.appendChild(alertaDiv); //Agregar la alerta al div loginResultado
-    
-        //Desaparecer alerta después de 3 segundos
-        setTimeout(() => {
-            const alerta = document.querySelector('.alert');
-            if (alerta) {
-                alerta.remove();
-            }
-        }, 3000);
+    //#region Mensaje alerta
+    const toastLiveExample = document.getElementById('liveToast');
+    const tituloAlerta = document.getElementById('txtTituloAlerta');
+    const mensajeAlerta = document.getElementById('txtAlertaMensaje');
+
+    function mostrarMensajeAlerta(titulo,mensaje){
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+        tituloAlerta.textContent = titulo;
+        mensajeAlerta.textContent = mensaje;
+        toastBootstrap.show()
     }
     //#endregion
 });

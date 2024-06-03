@@ -1,4 +1,3 @@
-// Variables
 let contenidoCarrito = document.querySelector('.container .row');
 let itemsCarrito = document.querySelector('.card-items');
 let precioTotalCarrito = document.querySelector('.price-total');
@@ -8,7 +7,6 @@ let arrayCompras = [];
 let precioTotalProductos = 0;
 let contadorProductos = 0;
 
-// Event Listeners
 document.getElementById('cart-icon').addEventListener('click', function() {
     document.getElementById('products-id').style.display = 'block';
 });
@@ -24,7 +22,6 @@ function loadEventListeners() {
     itemsCarrito.addEventListener('click', eliminarProducto);
 }
 
-// Functions
 function agregarProducto(e) {
     e.preventDefault();
     if (e.target.classList.contains('btn-add-cart')) {
