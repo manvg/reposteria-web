@@ -15,9 +15,20 @@ body {
     font-size: 25px;
 }
 
+.carousel-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.9); /* Cambio a transparente */
+}
 .carousel-item img {
-    height: 10vh; /* Ajusta esta altura según tus necesidades */
-    object-fit: cover;
+    max-height: 70vh; /* Ajusta la altura según tu necesidad */
+    max-width: 100%;
+    object-fit: contain;
+}
+.carousel {
+    max-width: 90vw; /* Ajusta el ancho máximo del carrusel */
+    margin: auto;
 }
 
 @media (min-width: 768px) {
