@@ -15,6 +15,24 @@ body {
     font-size: 25px;
 }
 
+.carousel-item img {
+    height: 10vh; /* Ajusta esta altura según tus necesidades */
+    object-fit: cover;
+}
+
+@media (min-width: 768px) {
+    .carousel-item img {
+        height: 70vh;
+    }
+}
+
+@media (min-width: 992px) {
+    .carousel-item img {
+        height: 80vh;
+    }
+}
+
+
 .navbar{
     background-color: rgba(212, 130, 166, 0.8); /* Utiliza RGBA para añadir transparencia */
 }

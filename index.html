@@ -26,7 +26,7 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
             <ul class="navbar-nav custom-nav-text">
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                <a class="nav-link" aria-current="page" href="index.html">Inicio</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="tortas.html">Tortas</a>
@@ -59,7 +59,7 @@
         </div>
     </nav>
     <br>
-    <div class="container">
+    <div class="container mt-4 text-center">
         <div class="row title-row">
             <div class="col-md-12">
                 <h1
@@ -68,6 +68,37 @@
             </div>
         </div>
     </div>
+    <div class="container mt-5">
+        <div id="galleryCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="img/tortas/torta_manjar_nuez.PNG" class="d-block w-100" alt="Imagen 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="img/tortas/torta_manjar_durazo_crema.PNG" class="d-block w-100" alt="Imagen 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="img/pie_de_limon.PNG" class="d-block w-100" alt="Imagen 3">
+                </div>
+                <!-- Añade más imágenes aquí -->
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <!-- Añade más indicadores aquí -->
+            </div>
+        </div>
+    </div>
+    <br>
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-6 col-lg-3 mt-2">
@@ -115,7 +146,7 @@
     <footer class="text-center bg-dark" style="color: white;">
         <strong>© 2024 - Repostería Mis Dulces Delicias.</strong>Todos los derechos reservados.
     </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBogGzeywz57NWk5kM5BXG2l8C94l6C2HY+kNiqbI6AC+tda" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"></script>
