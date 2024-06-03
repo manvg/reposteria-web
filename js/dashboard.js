@@ -46,4 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     listarUsuarios();
+
+    
 });
