@@ -100,31 +100,35 @@
             <div class="col-md-3">
                 <!-- Tablero -->
                 <div class="tablero mt-4">
-                    <div class="tablero-item datos-personales" onclick="mostrarFormulario('datos-personales')">Editar Datos Personales</div>
-                    <div class="tablero-item cambiar-contrasena" onclick="mostrarFormulario('cambiar-contrasena')">Cambiar Contraseña</div>
+                    <div class="tablero-item" id="btnDatosPersonales">Editar Datos Personales</div>
+                    <div class="tablero-item" id="btnCambiarContrasena">Cambiar Contraseña</div>
                 </div>
             </div>
             <!-- Formulario -->
             <div class="col-md-9">
                 <div id="formulario-datos-personales" style="display: none;">
                     <h4 class="mb-4 mt-4">Datos Personales</h4>
-                    <form id="miCuentaForm">
+                    <form id="miCuentaForm" class="needs-validation" novalidate>
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="txtNombre" class="form-label">Nombre <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="txtNombre" required>
+                                <div class="invalid-feedback">Este campo es obligatorio.</div>
                             </div>
                             <div class="col-md-6">
                                 <label for="txtApellido" class="form-label">Apellido <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="txtApellido" required>
+                                <div class="invalid-feedback">Este campo es obligatorio.</div>
                             </div>
                             <div class="col-md-6">
                                 <label for="txtDireccion" class="form-label">Dirección <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="txtDireccion" required>
+                                <div class="invalid-feedback">Este campo es obligatorio.</div>
                             </div>
                             <div class="col-md-6">
-                                <label for="txtTelefono" class="form-label">Teléfono </label>
-                                <input type="number" class="form-control" id="txtTelefono" required>
+                                <label for="txtTelefono" class="form-label">Teléfono <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" maxlength="9" id="txtTelefono" required>
+                                <div class="invalid-feedback">Este campo es obligatorio.</div>
                             </div>
                             <div class="col-12 text-end">
                                 <button type="submit" class="btn btn-primary">Guardar cambios</button>
@@ -139,13 +143,13 @@
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="txtContrasenaActual" class="form-label">Contraseña actual</label>
-                                <input type="password" class="form-control" id="txtContrasenaActual" required>
-                                <div class="invalid-feedback repetir-contrasena">Este campo es obligatorio.</div>
+                                <input type="password" class="form-control" id="txtContrasenaActual" maxlength="18" required>
+                                <div class="invalid-feedback actual-contrasena">Este campo es obligatorio.</div>
                             </div>
                             <div class="col-md-6">
                                 <label for="txtNuevaContrasena" class="form-label">Nueva Contraseña</label>
-                                <input type="password" class="form-control" id="txtNuevaContrasena" required>
-                                <div class="invalid-feedback repetir-contrasena">Este campo es obligatorio.</div>
+                                <input type="password" class="form-control" id="txtNuevaContrasena" maxlength="18" required>
+                                <div class="invalid-feedback nueva-contrasena">Este campo es obligatorio.</div>
                             </div>
                             <div class="col-12 text-end">
                                 <button type="submit" class="btn btn-primary">Guardar cambios</button>
@@ -173,15 +177,3 @@
 </body>
 
 </html>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        document.getElementById("formulario-datos-personales").style.display = "block";
-    });
-    function mostrarFormulario(formulario) {
-        const formularios = ['datos-personales', 'cambiar-contrasena'];
-        formularios.forEach(form => {
-            const elemento = document.getElementById('formulario-' + form);
-            elemento.style.display = form === formulario ? 'block' : 'none';
-        });
-    }
-</script>

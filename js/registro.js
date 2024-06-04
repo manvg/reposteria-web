@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+  //#region Guardar formulario de regitro
   const formRegister = document.querySelector('.needs-validation');
   formRegister.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -39,73 +40,125 @@ document.addEventListener('DOMContentLoaded', function () {
       mostrarMensajeAlerta('Error', 'El usuario ya existe.')
     }
   }, false);
-});
+  //#endregion
 
-//#region Validaciones contraseña
-document.getElementById('txtContrasena').addEventListener('change', validarContrasena);
+  //#region Validar campos formulario registro
+  const txtNombre = document.getElementById('txtNombre');
+  const txtApellidoPaterno = document.getElementById('txtApellidoPaterno');
+  const txtDireccion = document.getElementById('txtDireccion');
+  const txtTelefono = document.getElementById('txtTelefono');
 
-document.getElementById('txtRepetirContrasena').addEventListener('change', function () {
-  let contrasena = document.getElementById('txtContrasena').value;
-  let repetirContrasena = document.getElementById('txtRepetirContrasena').value;
+  txtNombre.addEventListener('keypress', function (event) {
+    validarSoloIngresoLetras(event);
+  });
 
-  if (contrasena !== null && contrasena !== '' && repetirContrasena !== null && repetirContrasena !== '') {
-    // Validar igualdad de contraseñas
-    if (contrasena !== repetirContrasena) {
-      document.querySelector('.invalid-feedback.repetir-contrasena').textContent = "Las contraseñas no son iguales.";
-      document.getElementById('txtRepetirContrasena').classList.add('is-invalid');
-      document.querySelector('.invalid-feedback.repetir-contrasena').style.display = 'block';
+  txtApellidoPaterno.addEventListener('keypress', function (event) {
+    validarSoloIngresoLetras(event);
+  });
+
+  txtDireccion.addEventListener('keypress', function (event) {
+    validarIngresoAlphanumerico(event);
+  });
+
+  txtTelefono.addEventListener('keypress', function (event) {
+    validarSoloIngresoNumeros(event);
+  });
+
+  function validarSoloIngresoLetras(event) {
+    let regex = new RegExp("^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\\s-]+$");
+    let key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+    if (!regex.test(key)) {
+      event.preventDefault();
       return false;
     }
   }
 
-  // Repetir contraseña
-  document.getElementById('txtRepetirContrasena').classList.remove('is-invalid');
-  document.querySelector('.invalid-feedback.repetir-contrasena').textContent = "Este campo es obligatorio.";
-  document.querySelector('.invalid-feedback.repetir-contrasena').style.display = 'none';
-});
-
-function validarContrasena() {
-  let contrasena = document.getElementById('txtContrasena').value;
-
-  if (contrasena !== null && contrasena !== '') {
-    // Validar existencia de letra mayuscula, digitos, y largo de 6 a 18 caracteres
-    if (contrasena.length < 6 || contrasena.length > 18) {
-      mostrarMensajeContrasena("Largo entre 6 y 18 caracteres.");
-      return false;
-    }
-    if (!/[A-Z]/.test(contrasena)) {
-      mostrarMensajeContrasena("Debe contener al menos una letra mayúscula.");
-      return false;
-    }
-    if (!/\d/.test(contrasena)) {
-      mostrarMensajeContrasena("Debe contener al menos un número.");
+  function validarSoloIngresoNumeros(event) {
+    var regex = new RegExp("^[0-9]+$");
+    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+    if (!regex.test(key)) {
+      event.preventDefault();
       return false;
     }
   }
 
-  // Inicializa campos con valores por defecto
-  // Contraseña
-  document.getElementById('txtContrasena').classList.remove('is-invalid');
-  document.querySelector('.invalid-feedback.contrasena').textContent = "Este campo es obligatorio.";
-  document.querySelector('.invalid-feedback.contrasena').style.display = 'none';
-}
+  function validarIngresoAlphanumerico(event) {
+    var regex = new RegExp("^[a-zA-Z0-9áéíóúÁÉÍÓÚüÜñÑ\\s-]+$");
+    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+    if (!regex.test(key)) {
+      event.preventDefault();
+      return false;
+  }
+  } 
+  //#endregion
 
-function mostrarMensajeContrasena(mensaje) {
-  document.getElementById('txtContrasena').classList.add('is-invalid');
-  document.querySelector('.invalid-feedback.contrasena').textContent = mensaje;
-  document.querySelector('.invalid-feedback.contrasena').style.display = 'block';
-}
-//#endregion
+  //#region Validaciones contraseña
+  document.getElementById('txtContrasena').addEventListener('change', validarContrasena);
 
-//#region Mensaje alerta
-const toastLiveExample = document.getElementById('liveToast');
-const tituloAlerta = document.getElementById('txtTituloAlerta');
-const mensajeAlerta = document.getElementById('txtAlertaMensaje');
+  document.getElementById('txtRepetirContrasena').addEventListener('change', function () {
+    let contrasena = document.getElementById('txtContrasena').value;
+    let repetirContrasena = document.getElementById('txtRepetirContrasena').value;
 
-function mostrarMensajeAlerta(titulo, mensaje) {
-  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
-  tituloAlerta.textContent = titulo;
-  mensajeAlerta.textContent = mensaje;
-  toastBootstrap.show()
-}
-//#endregion
+    if (contrasena !== null && contrasena !== '' && repetirContrasena !== null && repetirContrasena !== '') {
+      // Validar igualdad de contraseñas
+      if (contrasena !== repetirContrasena) {
+        document.querySelector('.invalid-feedback.repetir-contrasena').textContent = "Las contraseñas no son iguales.";
+        document.getElementById('txtRepetirContrasena').classList.add('is-invalid');
+        document.querySelector('.invalid-feedback.repetir-contrasena').style.display = 'block';
+        return false;
+      }
+    }
+
+    // Repetir contraseña
+    document.getElementById('txtRepetirContrasena').classList.remove('is-invalid');
+    document.querySelector('.invalid-feedback.repetir-contrasena').textContent = "Este campo es obligatorio.";
+    document.querySelector('.invalid-feedback.repetir-contrasena').style.display = 'none';
+  });
+
+  function validarContrasena() {
+    let contrasena = document.getElementById('txtContrasena').value;
+
+    if (contrasena !== null && contrasena !== '') {
+      // Validar existencia de letra mayuscula, digitos, y largo de 6 a 18 caracteres
+      if (contrasena.length < 6 || contrasena.length > 18) {
+        mostrarMensajeContrasena("Largo entre 6 y 18 caracteres.");
+        return false;
+      }
+      if (!/[A-Z]/.test(contrasena)) {
+        mostrarMensajeContrasena("Debe contener al menos una letra mayúscula.");
+        return false;
+      }
+      if (!/\d/.test(contrasena)) {
+        mostrarMensajeContrasena("Debe contener al menos un número.");
+        return false;
+      }
+    }
+
+    // Inicializa campos con valores por defecto
+    // Contraseña
+    document.getElementById('txtContrasena').classList.remove('is-invalid');
+    document.querySelector('.invalid-feedback.contrasena').textContent = "Este campo es obligatorio.";
+    document.querySelector('.invalid-feedback.contrasena').style.display = 'none';
+  }
+
+  function mostrarMensajeContrasena(mensaje) {
+    document.getElementById('txtContrasena').classList.add('is-invalid');
+    document.querySelector('.invalid-feedback.contrasena').textContent = mensaje;
+    document.querySelector('.invalid-feedback.contrasena').style.display = 'block';
+  }
+  //#endregion
+
+  //#region Mensaje alerta
+  const toastLiveExample = document.getElementById('liveToast');
+  const tituloAlerta = document.getElementById('txtTituloAlerta');
+  const mensajeAlerta = document.getElementById('txtAlertaMensaje');
+
+  function mostrarMensajeAlerta(titulo, mensaje) {
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+    tituloAlerta.textContent = titulo;
+    mensajeAlerta.textContent = mensaje;
+    toastBootstrap.show()
+  }
+  //#endregion
+
+});

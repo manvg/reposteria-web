@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
     forgotPasswordForm.addEventListener('submit', function(event) {
         event.preventDefault();
         const email = document.getElementById('forgotEmail').value;
-        mostrarMensajeAlerta('Éxito','Se ha enviado un enlace de recuperación a ' + email);
+        mostrarMensajeAlerta('Éxito','Si este email posee una cuenta, se enviará un enlace de recuperación a ' + email);
         containerLogin.style.display = '';
         forgotPasswordContainer.style.display = 'none';
         

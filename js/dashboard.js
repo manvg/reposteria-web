@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
       localStorage.removeItem('usuarios');
       localStorage.removeItem('datosSesion');
       alert('localStorage limpiado.');
+      window.location.href = 'login.html'
     });
     
 });

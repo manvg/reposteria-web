@@ -4,17 +4,8 @@ body {
     background: url('../img/background-1.png') no-repeat center center fixed; /* Asegura que la ruta sea correcta */
     background-size: cover; /* Para que la imagen cubra toda la pantalla */
 }
-/* .container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 50vh;
-} */
 
-.breadcrumb-item, .breadcrumb-item a {
-    font-size: 25px;
-}
-
+/* Galeria Carousel Inicio*/
 .carousel-item {
     display: flex;
     justify-content: center;
@@ -43,7 +34,7 @@ body {
     }
 }
 
-
+/* Menu */
 .navbar{
     background-color: rgba(212, 130, 166, 0.8); /* Utiliza RGBA para añadir transparencia */
 }
@@ -78,18 +69,12 @@ body {
     margin: 0 15px; /* Ajusta el valor para más o menos espacio */
 }
 
-.boton-carrito{
-    height: 50px;
-}
-.bi .bi-cart{
-    height: 20px;
-}
+/* Modificar estilo clase 'Card' */
 .card {
     background-color: transparent; /* Fondo transparente para la tarjeta */
 }
 /* Fondo semi-transparente para el cuerpo de la tarjeta */
 .card-body {
-    /* background-color: rgba(212, 130, 166, 0.8);  */
     background-color: rgba(255, 255, 255, 0.8); 
     opacity: 1; /* Restablece la opacidad a 1 para el cuerpo de la tarjeta */
     text-align: center;
@@ -115,6 +100,7 @@ body {
 .login-container h2 {
     margin-bottom: 20px;
 }
+
 /* Formulario de registro */
 .registro-wrapper {
     display: flex;
@@ -131,7 +117,14 @@ body {
 .registro-container h2 {
     margin-bottom: 20px;
 }
-/* Estilos para el carrito de compras */
+
+/* Carrito de compras */
+.boton-carrito{
+    height: 50px;
+}
+.bi .bi-cart{
+    height: 20px;
+}
 .cart-products {
     display: none;
     position: fixed;
@@ -214,6 +207,7 @@ body {
     font-weight: bold;
 }
 
+/* Productos */
 .contenedor-productos{
     background-color: rgba(255, 255, 255, 0.8);
 }

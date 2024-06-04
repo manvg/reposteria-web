@@ -90,7 +90,7 @@
                 <div class="row mt-3 justify-content-center">
                     <div class="col-md-6">
                         <label class="form-label">Teléfono <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="txtTelefono" required>
+                        <input type="text" class="form-control" maxlength="9" id="txtTelefono" required>
                         <div class="invalid-feedback">Este campo es obligatorio.</div>
                     </div>
                     <div class="col-md-6">
@@ -102,12 +102,12 @@
                 <div class="row mt-3 justify-content-center">
                     <div class="col-md-6">
                         <label class="form-label">Contraseña <span class="text-danger">*</span></label>
-                        <input type="password" class="form-control" id="txtContrasena" required>
+                        <input type="password" class="form-control" id="txtContrasena" maxlength="18" required>
                         <div class="invalid-feedback contrasena">Este campo es obligatorio.</div>
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Confirmar contraseña <span class="text-danger">*</span></label>
-                        <input type="password" class="form-control" id="txtRepetirContrasena" required>
+                        <input type="password" class="form-control" id="txtRepetirContrasena" maxlength="18" required>
                         <div class="invalid-feedback repetir-contrasena">Este campo es obligatorio.</div>
                     </div>
                 </div>
