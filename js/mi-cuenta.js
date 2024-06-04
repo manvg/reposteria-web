@@ -89,6 +89,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         localStorage.setItem('usuarios', JSON.stringify(usuarios));
 
+        //Actualizar datos sesión
+        datosSesion.nombreUsuario = nombre;
+        localStorage.setItem('datosSesion', JSON.stringify(datosSesion));
+
         mostrarMensajeAlerta('Éxito', 'Cambios guardados.');
         // miCuentaForm.reset();
 
@@ -121,7 +125,6 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // const usuarioActual = usuarios[usuarioIndex];
         if (usuarios[usuarioIndex].contrasena !== contrasenaActual) {
             cambiarContrasenaForm.classList.remove('was-validated');
             mostrarMensajeAlerta('Error', 'La contraseña actual no es correcta.');
